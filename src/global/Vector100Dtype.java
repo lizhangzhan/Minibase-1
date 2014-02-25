@@ -57,4 +57,19 @@ public class Vector100Dtype
 		distance = (int)Math.sqrt(s);
 		return distance;
 	}
+	
+	public static Vector100Dtype getMaxVector100D(Vector100Dtype v){
+	int [] maxarray= {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	
+	
+	int []  targetValue = v.getVector100D();
+	for(int i =0;i<100;i++){
+		if (targetValue[i] >0 )
+			maxarray[i] = -10000;
+		else
+			maxarray[i] = 10000;
+	}
+	Vector100Dtype maxv = new Vector100Dtype(maxarray);
+	return maxv;
+}
 }

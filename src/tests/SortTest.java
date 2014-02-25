@@ -1012,51 +1012,57 @@ class SORTDriver extends TestDriver
     status = FAIL;
     e.printStackTrace();
   }
-  try
-{
-	Tuple tt = fscan.get_next();
-	while (tt!=null)
-	{
-		int a[] = tt.getvectorFld(1).getVector100D();
-		for (int i = 0; i < 100; i++)
-		{
-			System.out.print(a[i]);
-			System.out.print(',');
-		}
-		System.out.println();
-		tt = fscan.get_next();
-	}
-} catch (JoinsException | InvalidTupleSizeException | InvalidTypeException
-		| PageNotReadException | PredEvalException | UnknowAttrType
-		| FieldNumberOutOfBoundException | WrongPermat | IOException e)
-{
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-}
-  
-//  // Sort "test2.in"
-//  Sort sort = null;
-//  try {
-//    sort = new Sort(attrType, (short) 1, attrSize, fscan, 1, order[1], REC_LEN1, SORTPGNUM);
-//  }
-//  catch (Exception e) {
-//    status = FAIL;
-//    e.printStackTrace();
-//  }
+//  try
+//{
+//	Tuple tt = fscan.get_next();
+//	while (tt!=null)
+//	{
+//		int a[] = tt.getvectorFld(1).getVector100D();
+//		for (int i = 0; i < 100; i++)
+//		{
+//			System.out.print(a[i]);
+//			System.out.print(',');
+//		}
+//		System.out.println();
+//		tt = fscan.get_next();
+//	}
+//} catch (JoinsException | InvalidTupleSizeException | InvalidTypeException
+//		| PageNotReadException | PredEvalException | UnknowAttrType
+//		| FieldNumberOutOfBoundException | WrongPermat | IOException e)
+//{
+//	// TODO Auto-generated catch block
+//	e.printStackTrace();
+//}
+//  
+  // Sort "test2.in"
+  Sort sort = null;
+  try {
+    sort = new Sort(attrType, (short) 1, attrSize, fscan, 1, order[0], 400, SORTPGNUM, target, 3);
+  }
+  catch (Exception e) {
+    status = FAIL;
+    e.printStackTrace();
+  }
 //
 //
 //  int count = 0;
 //  t = null;
 //  String outval = null;
 //  
-//  try {
-//    t = sort.get_next();
+  Tuple [] result = new Tuple[3];
+  try {
+    result = sort.get_SortK();
+  }
+  catch (Exception e) {
+    status = FAIL;
+    e.printStackTrace();
+  }
+//  int [] tmp1 = result[0].getvectorFld(1).getVector100D();
+//  for(int i=0;i<100;i++)
+//  {
+//	  System.out.print(tmp1[i]);
 //  }
-//  catch (Exception e) {
-//    status = FAIL;
-//    e.printStackTrace();
-//  }
-//
+//  System.out.println();
 //  boolean flag = true;
 //  
 //  while (t != null) {

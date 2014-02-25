@@ -2,6 +2,7 @@ package iterator;
 
 import heap.*;
 import global.*;
+
 import java.io.*;
 
 public class PredEval
@@ -57,6 +58,12 @@ public class PredEval
 	      fld1        = 1;
 	      switch (temp_ptr.type1.attrType)
 		{
+		case AttrType.attrvector:
+		  value.setHdr((short)1, val_type, null);
+		  value.setVectorfld(1, temp_ptr.operand1.vector);
+		  tuple1 = value;
+		  comparison_type.attrType = AttrType.attrvector;
+		  break;
 		case AttrType.attrInteger:
 		  value.setHdr((short)1, val_type, null);
 		  value.setIntFld(1, temp_ptr.operand1.integer);
@@ -89,6 +96,7 @@ public class PredEval
 		      comparison_type.attrType = in2[fld1-1].attrType;
 		    }
 		  break;
+		
 		default:
 		  break;
 		}
@@ -98,6 +106,11 @@ public class PredEval
 	      fld2        = 1;
 	      switch (temp_ptr.type2.attrType)
 		{
+		case AttrType.attrvector:
+		  value.setHdr((short)1, val_type, null);
+		  value.setVectorfld(1, temp_ptr.operand1.vector);
+		  tuple2 = value;
+		  break;
 		case AttrType.attrInteger:
 		  value.setHdr((short)1, val_type, null);
 		  value.setIntFld(1, temp_ptr.operand2.integer);
