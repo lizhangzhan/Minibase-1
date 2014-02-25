@@ -3,6 +3,7 @@ package tests;
 import java.io.*;
 import java.lang.*;
 import java.util.*;
+
 import global.*;
 import iterator.*;
 import heap.*;
@@ -378,7 +379,7 @@ public class QueryCheck {
     int   temp_i;
     float temp_f;
     String  temp_s;
-    
+    Vector100Dtype temp_v;
     for(int i=1; i<=fldnum; i++) {
       switch((type[i-1]).attrType) {
       case AttrType.attrInteger:
@@ -411,6 +412,17 @@ public class QueryCheck {
 	  System.err.println ("**** Error setting up the tuples");
 	}
 	break;
+	case AttrType.attrvector:
+		try
+		{
+			temp_v = from.getvectorFld(i);
+			to = to.setVectorfld(i, temp_v);
+		} catch (FieldNumberOutOfBoundException | IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		break;
       default:
 	//error(Don't know what to do with attrSymbol, attrNull--TupleCopy(..);
 	break;

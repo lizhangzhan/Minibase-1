@@ -69,6 +69,8 @@ public class DuplElim extends Iterator
 	case AttrType.attrString:
 	  sortFldLen = s_sizes[0];
 	  break;
+	case AttrType.attrvector:
+	  sortFldLen = 400;
 	default:
 	  //error("Unknown type");
 	  return;

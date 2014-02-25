@@ -1,12 +1,14 @@
 package tests;
 
 import java.io.*; 
+
 import global.*;
 import bufmgr.*;
 import diskmgr.*;
 import heap.*;
 import iterator.*;
 import index.*;
+
 import java.util.Random;
 
 
@@ -996,21 +998,42 @@ class SORTDriver extends TestDriver
     }
   }
 
-//  // create an iterator by open a file scan
-//  FldSpec[] projlist = new FldSpec[1];
-//  RelSpec rel = new RelSpec(RelSpec.outer); 
-//  projlist[0] = new FldSpec(rel, 1);
-//  
-//  FileScan fscan = null;
-//  
-//  try {
-//    fscan = new FileScan("test5.in", attrType, attrSize, (short) 1, 1, projlist, null);
-//  }
-//  catch (Exception e) {
-//    status = FAIL;
-//    e.printStackTrace();
-//  }
-//   
+  // create an iterator by open a file scan
+  FldSpec[] projlist = new FldSpec[1];
+  RelSpec rel = new RelSpec(RelSpec.outer); 
+  projlist[0] = new FldSpec(rel, 1);
+  
+  FileScan fscan = null;
+  
+  try {
+    fscan = new FileScan("test5.in", attrType, attrSize, (short) 1, 1, projlist, null);
+  }
+  catch (Exception e) {
+    status = FAIL;
+    e.printStackTrace();
+  }
+  try
+{
+	Tuple tt = fscan.get_next();
+	while (tt!=null)
+	{
+		int a[] = tt.getvectorFld(1).getVector100D();
+		for (int i = 0; i < 100; i++)
+		{
+			System.out.print(a[i]);
+			System.out.print(',');
+		}
+		System.out.println();
+		tt = fscan.get_next();
+	}
+} catch (JoinsException | InvalidTupleSizeException | InvalidTypeException
+		| PageNotReadException | PredEvalException | UnknowAttrType
+		| FieldNumberOutOfBoundException | WrongPermat | IOException e)
+{
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+  
 //  // Sort "test2.in"
 //  Sort sort = null;
 //  try {
