@@ -413,7 +413,9 @@ public void setHdr (short numFlds,  AttrType types[], short strSizes[])
      incr = (short) (strSizes[strCount] +2);  //strlen in bytes = strlen +2
      strCount++;
      break;       
- 
+   case AttrType.attrvector:
+   	 incr = 400;
+   	 break;
    default:
     throw new InvalidTypeException (null, "TUPLE: TUPLE_TYPE_ERROR");
    }
@@ -435,7 +437,9 @@ public void setHdr (short numFlds,  AttrType types[], short strSizes[])
    case AttrType.attrString:
      incr =(short) ( strSizes[strCount] +2);  //strlen in bytes = strlen +2
      break;
-
+   case AttrType.attrvector:
+   	 incr = 400;
+   	 break;
    default:
     throw new InvalidTypeException (null, "TUPLE: TUPLE_TYPE_ERROR");
    }
@@ -490,7 +494,9 @@ public void setHdr (short numFlds,  AttrType types[], short strSizes[])
   int i, val;
   float fval;
   String sval;
-
+  //Modified By JInxuan Wu & Zhuwei 8:42:39 PM Feb 24, 2014
+  Vector100Dtype vval;
+  //end Modified
   System.out.print("[");
   for (i=0; i< fldCnt-1; i++)
    {
@@ -510,7 +516,12 @@ public void setHdr (short numFlds,  AttrType types[], short strSizes[])
      sval = Convert.getStrValue(fldOffset[i], data,fldOffset[i+1] - fldOffset[i]);
      System.out.print(sval);
      break;
-  
+   case AttrType.attrvector:
+   	vval = Convert.getVectorValue(fldOffset[i], data);
+   	System.out.println("Vector value is");
+   	System.out.print(vval.getVector100D());
+   	System.out.print('\n');
+   	break;
    case AttrType.attrNull:
    case AttrType.attrSymbol:
      break;
@@ -534,7 +545,12 @@ public void setHdr (short numFlds,  AttrType types[], short strSizes[])
      sval = Convert.getStrValue(fldOffset[i], data,fldOffset[i+1] - fldOffset[i]);
      System.out.print(sval);
      break;
-
+   case AttrType.attrvector:
+  	vval = Convert.getVectorValue(fldOffset[i], data);
+  	System.out.println("Vector value is");
+  	System.out.print(vval.getVector100D());
+  	System.out.print('\n');
+  	break;
    case AttrType.attrNull:
    case AttrType.attrSymbol:
      break;

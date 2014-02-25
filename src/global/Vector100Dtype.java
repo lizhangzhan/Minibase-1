@@ -45,4 +45,16 @@ public class Vector100Dtype
 		return byteBuffer.array();
 		
 	}
+	public static int getDistance(Vector100Dtype v1, Vector100Dtype v2)
+	{
+		int d1 [] = v1.getVector100D();
+		int d2 [] = v2.getVector100D();
+		double s = 0;
+		int distance = 0;
+		for(int i = 0;i< 100;i++){
+			s += Math.pow(d1[i]-d2[i],2);
+		}
+		distance = (int)Math.sqrt(s);
+		return distance;
+	}
 }

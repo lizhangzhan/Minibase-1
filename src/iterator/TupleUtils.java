@@ -12,6 +12,8 @@ import java.lang.*;
 public class TupleUtils
 {
   
+
+	public static Vector100Dtype Target;
   /**
    * This function compares a tuple with another tuple in respective field, and
    *  returns:
@@ -42,7 +44,9 @@ public class TupleUtils
       int   t1_i,  t2_i;
       float t1_r,  t2_r;
       String t1_s, t2_s;
-      
+      //Modified By JInxuan Wu & Zhuwei 8:50:47 PM Feb 24, 2014
+      Vector100Dtype v1_v, v2_v;
+      //end Modified
       switch (fldType.attrType) 
 	{
 	case AttrType.attrInteger:                // Compare two integers.
@@ -79,6 +83,19 @@ public class TupleUtils
 	  if(t1_s.compareTo( t2_s)>0)return 1;
 	  if (t1_s.compareTo( t2_s)<0)return -1;
 	  return 0;
+	  
+	case AttrType.attrvector:
+		v1_v = t1.getvectorFld(t1_fld_no);
+		v2_v = t2.getvectorFld(t2_fld_no);
+		int d1 = Vector100Dtype.getDistance(v1_v, Target);
+		int d2 = Vector100Dtype.getDistance(v2_v, Target);
+		if(d1-d2>0)
+			return 1;
+		else if(d1-d2<0)
+			return -1;
+		else
+			return 0;
+	
 	default:
 	  
 	  throw new UnknowAttrType(null, "Don't know how to handle attrSymbol, attrNull");
@@ -197,6 +214,13 @@ public class TupleUtils
 	  }catch (FieldNumberOutOfBoundException e){
 	    throw new TupleUtilsException(e, "FieldNumberOutOfBoundException is caught by TupleUtils.java");
 	  }
+	  break;
+	case AttrType.attrvector:
+	  try {
+		  value.setVectorfld(fld_no, tuple.getvectorFld(fld_no));
+	  }catch (FieldNumberOutOfBoundException e){
+		    throw new TupleUtilsException(e, "FieldNumberOutOfBoundException is caught by TupleUtils.java");
+		  }
 	  break;
 	default:
 	  throw new UnknowAttrType(null, "Don't know how to handle attrSymbol, attrNull");
