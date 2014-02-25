@@ -12,6 +12,9 @@ public class AttrType {
   public static final int attrReal    = 2;
   public static final int attrSymbol  = 3;
   public static final int attrNull    = 4;
+  //Modified By JInxuan Wu & Zhuwei 7:48:12 PM Feb 24, 2014
+  public static final int attrvector = 5;
+  //end Modified
   
   public int attrType;
 

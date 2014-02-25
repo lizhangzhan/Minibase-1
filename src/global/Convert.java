@@ -7,6 +7,15 @@ import java.lang.*;
 
 public class Convert{
  
+
+  public static Vector100Dtype getVectorValue(int position, byte[] data)
+  {
+  	byte tmp [] = new byte[400];
+  	System.arraycopy(data, position, tmp, 0	, 400);
+  	Vector100Dtype result = new Vector100Dtype(tmp);
+  	return result;
+  }
+  
  /**
  * read 4 bytes from given byte array at the specified position
  * convert it to an integer
@@ -302,4 +311,10 @@ public class Convert{
       System.arraycopy (B, 0, data, position, 2);
       
     }
+  
+  public static void setVectorValue(Vector100Dtype value, int position, byte[] data)
+  {
+  	System.arraycopy(value.getByteVector100D(), 0, data, position, 400);
+  }
 }
+  
