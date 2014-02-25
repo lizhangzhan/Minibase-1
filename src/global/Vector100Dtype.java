@@ -10,6 +10,13 @@ public class Vector100Dtype
 {
 	private int [] vector;
 	
+	public Vector100Dtype()
+	{
+		for(int i=0;i<100;i++)
+		{
+			vector[i] = 0;
+		}
+	}
 	public Vector100Dtype(int [] srcArray)
 	{
 		System.arraycopy(srcArray, 0, vector, 0, 100);

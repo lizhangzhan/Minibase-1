@@ -181,6 +181,16 @@ public class Tuple implements GlobalConst{
        return data;
    }
    
+   
+  public Vector100Dtype getvectorFld(int fldNo)
+  {
+  	Vector100Dtype val = new Vector100Dtype();
+  	if((fldNo > 0) && fldNo <= fldCnt)
+  	{
+  		val.setVector100D(Convert.getVectorValue(fldOffset[fldNo - 1], data).getVector100D());
+  	}
+  	return val;
+  }
    /**
     * Convert this field into integer 
     * 
@@ -339,7 +349,19 @@ public class Tuple implements GlobalConst{
      else 
        throw new FieldNumberOutOfBoundException (null, "TUPLE:TUPLE_FLDNO_OUT_OF_BOUND");
     }
-
+  
+   
+   public Tuple setVectorfld(int fldNo, Vector100Dtype val)
+		   throws IOException, FieldNumberOutOfBoundException
+   {
+   	if( (fldNo > 0) && (fldNo <= fldCnt))
+   	{
+   		Convert.setVectorValue(val, fldOffset[fldNo-1], data);
+   		return this;
+   	}
+   	else 
+        throw new FieldNumberOutOfBoundException (null, "For Vector, TUPLE:TUPLE_FLDNO_OUT_OF_BOUND");
+   }
 
    /**
     * setHdr will set the header of this tuple.   
