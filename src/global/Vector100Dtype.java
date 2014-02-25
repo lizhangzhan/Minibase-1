@@ -8,7 +8,7 @@ import java.nio.IntBuffer;
 //end Modified
 public class Vector100Dtype
 {
-	private int [] vector;
+	private int [] vector = new int[100];
 	
 	public Vector100Dtype()
 	{

@@ -50,8 +50,16 @@ class SORTDriver extends TestDriver
   private static short REC_LEN1 = 32; 
   private static short REC_LEN2 = 160; 
   private static int   SORTPGNUM = 12; 
-
-
+  private int targetarray [] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+  private Vector100Dtype target= new Vector100Dtype(targetarray);
+  private static int array[][] = {
+  	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+  	{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+  	{3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3},
+  	{4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4},
+  	{5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5},
+  	{9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999}
+  };
   public SORTDriver() {
     super("sorttest");
   }
@@ -926,7 +934,158 @@ class SORTDriver extends TestDriver
     
   protected boolean test5()
   {
-    return true;
+  System.out.println("------------------------ TEST 5 --------------------------");
+  
+  boolean status = OK;
+
+  AttrType[] attrType = new AttrType[1];
+  attrType[0] = new AttrType(AttrType.attrvector);
+  short[] attrSize = new short[1];
+  attrSize[0] = REC_LEN1;
+  TupleOrder[] order = new TupleOrder[2];
+  order[0] = new TupleOrder(TupleOrder.Ascending);
+  order[1] = new TupleOrder(TupleOrder.Descending);
+  
+  // create a tuple of appropriate size
+  Tuple t = new Tuple();
+  try {
+    t.setHdr((short) 1, attrType, attrSize);
+  }
+  catch (Exception e) {
+    status = FAIL;
+    e.printStackTrace();
+  }
+  int size = t.size();
+  
+  // Create unsorted data file "test2.in"
+  RID             rid;
+  Heapfile        f = null;
+  try {
+    f = new Heapfile("test5.in");
+  }
+  catch (Exception e) {
+    status = FAIL;
+    e.printStackTrace();
+  }
+  
+  t = new Tuple(size);
+  try {
+    t.setHdr((short) 1, attrType, attrSize);
+  }
+  catch (Exception e) {
+    status = FAIL;
+    e.printStackTrace();
+  }
+  Vector100Dtype tmp = new Vector100Dtype();
+  for (int i=0; i<6; i++) {
+    try {
+	tmp.setVector100D(array[i]);
+	t.setVectorfld(1,tmp);
+    }
+    catch (Exception e) {
+	status = FAIL;
+	e.printStackTrace();
+    }
+    
+    try {
+	rid = f.insertRecord(t.returnTupleByteArray());
+    }
+    catch (Exception e) {
+	status = FAIL;
+	e.printStackTrace();
+    }
+  }
+
+//  // create an iterator by open a file scan
+//  FldSpec[] projlist = new FldSpec[1];
+//  RelSpec rel = new RelSpec(RelSpec.outer); 
+//  projlist[0] = new FldSpec(rel, 1);
+//  
+//  FileScan fscan = null;
+//  
+//  try {
+//    fscan = new FileScan("test5.in", attrType, attrSize, (short) 1, 1, projlist, null);
+//  }
+//  catch (Exception e) {
+//    status = FAIL;
+//    e.printStackTrace();
+//  }
+//   
+//  // Sort "test2.in"
+//  Sort sort = null;
+//  try {
+//    sort = new Sort(attrType, (short) 1, attrSize, fscan, 1, order[1], REC_LEN1, SORTPGNUM);
+//  }
+//  catch (Exception e) {
+//    status = FAIL;
+//    e.printStackTrace();
+//  }
+//
+//
+//  int count = 0;
+//  t = null;
+//  String outval = null;
+//  
+//  try {
+//    t = sort.get_next();
+//  }
+//  catch (Exception e) {
+//    status = FAIL;
+//    e.printStackTrace();
+//  }
+//
+//  boolean flag = true;
+//  
+//  while (t != null) {
+//    if (count >= NUM_RECORDS) {
+//	System.err.println("Test2 -- OOPS! too many records");
+//	status = FAIL;
+//	flag = false; 
+//	break;
+//    }
+//    
+//    try {
+//	outval = t.getStrFld(1);
+//    }
+//    catch (Exception e) {
+//	status = FAIL;
+//	e.printStackTrace();
+//    }
+//
+//    if (outval.compareTo(data2[NUM_RECORDS - count - 1]) != 0) {
+//	System.err.println("Test2 -- OOPS! test2.out not sorted");
+//	status = FAIL;
+//    }
+//    count++;
+//
+//    try {
+//	t = sort.get_next();
+//    }
+//    catch (Exception e) {
+//	status = FAIL;
+//	e.printStackTrace();
+//    }
+//  }
+//  if (count < NUM_RECORDS) {
+//	System.err.println("Test2 -- OOPS! too few records");
+//	status = FAIL;
+//  }
+//  else if (flag && status) {
+//    System.err.println("Test2 -- Sorting OK");
+//  }
+//
+//  // clean up
+//  try {
+//    sort.close();
+//  }
+//  catch (Exception e) {
+//    status = FAIL;
+//    e.printStackTrace();
+//  }
+  
+  System.err.println("------------------- TEST 5 completed ---------------------\n");
+  status = true;
+  return status;
   }
     
   protected boolean test6()
