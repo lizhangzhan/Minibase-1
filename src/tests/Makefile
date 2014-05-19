@@ -1,5 +1,5 @@
 # modify the paths appropriately
-JDKPATH = /usr/local/jdk1.7.0_51
+JDKPATH = /Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home
 LIBPATH = .:..
 CLASSPATH = $(LIBPATH)
 BINPATH = $(JDKPATH)/bin

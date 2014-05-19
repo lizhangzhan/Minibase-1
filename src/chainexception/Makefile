@@ -1,5 +1,5 @@
-JDKPATH = /usr/local/jdk1.7.0_51
-LIBPATH = /p/course/cs784-raghu/minibase_share/javaminibase/construction
+JDKPATH = /Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home
+LIBPATH = ../../lib
 CLASSPATH = $(JDKPATH)/lib/classes.zip:.:..:$(LIBPATH)
 BINPATH = $(JDKPATH)/bin
 JAVAC = $(JDKPATH)/bin/javac -classpath $(CLASSPATH)
